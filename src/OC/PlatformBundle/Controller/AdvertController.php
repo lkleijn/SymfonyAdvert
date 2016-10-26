@@ -19,11 +19,10 @@ class AdvertController extends Controller
       // une page d'erreur 404 (qu'on pourra personnaliser plus tard d'ailleurs)
       throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
     }
-
     // Ici, on récupérera la liste des annonces, puis on la passera au template
 
     // Mais pour l'instant, on ne fait qu'appeler le template
-    return $this->render('OCPlatformBundle:Advert:index.html.twig');
+    return $this->render('OCPlatformBundle:Advert:index.html.twig', array('listAdverts' => array()));
   }
 
   public function viewAction($id)
@@ -74,5 +73,36 @@ class AdvertController extends Controller
     // Ici, on gérera la suppression de l'annonce en question
 
     return $this->render('OCPlatformBundle:Advert:delete.html.twig');
+  }
+  
+  public function menuAction()
+
+  {
+
+    // On fixe en dur une liste ici, bien entendu par la suite
+
+    // on la récupérera depuis la BDD !
+
+    $listAdverts = array(
+
+      array('id' => 2, 'title' => 'Recherche développeur Symfony2'),
+
+      array('id' => 5, 'title' => 'Mission de webmaster'),
+
+      array('id' => 9, 'title' => 'Offre de stage webdesigner')
+
+    );
+
+
+    return $this->render('OCPlatformBundle:Advert:menu.html.twig', array(
+
+      // Tout l'intérêt est ici : le contrôleur passe
+
+      // les variables nécessaires au template !
+
+      'listAdverts' => $listAdverts
+
+    ));
+
   }
 }
