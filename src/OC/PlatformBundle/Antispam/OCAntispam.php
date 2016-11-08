@@ -4,23 +4,26 @@
 namespace OC\PlatformBundle\Antispam;
 
 class OCAntispam
-{/**
+{
+  private $mailer;
+  private $locale;
+  private $minLength;
 
-   * Vérifie si le texte est un spam ou non
-
-   *
-
-   * @param string $text
-
-   * @return bool
-
-   */
-
-  public function isSpam($text)
-
+  public function __construct(\Swift_Mailer $mailer, $locale, $minLength)
   {
+    $this->mailer    = $mailer;
+    $this->locale    = $locale;
+    $this->minLength = (int) $minLength;
+  }
 
-    return strlen($text) < 50;
-
+  /**
+   * Vérifie si le texte est un spam ou non
+   *
+   * @param string $text
+   * @return bool
+   */
+  public function isSpam($text)
+  {
+    return strlen($text) < $this->minLength;
   }
 }

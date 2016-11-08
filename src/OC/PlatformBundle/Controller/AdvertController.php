@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class AdvertController extends Controller {
 
     public function indexAction($page) {
+
         // On ne sait pas combien de pages il y a
         // Mais on sait qu'une page doit être supérieure ou égale à 1
         if ($page < 1) {
@@ -32,17 +33,18 @@ class AdvertController extends Controller {
     }
 
     public function addAction(Request $request) {
-        
-        $antispam = $this->container->get('oc_platform.antispam');
-        $text = '...';
+
+
         // La gestion d'un formulaire est particulière, mais l'idée est la suivante :
         // Si la requête est en POST, c'est que le visiteur a soumis le formulaire
         if ($request->isMethod('POST')) {
             // Ici, on s'occupera de la création et de la gestion du formulaire
-            if ($antispam->isSpam($text)) {
+           // $antispam = $this->container->get('oc_platform.antispam');
+         //   $text = '...';
+           // if ($antispam->isSpam($text)) {
 
-                throw new \Exception('Votre message a été détecté comme spam !');
-            }
+             //   throw new \Exception('Votre message a été détecté comme spam !');
+           // }
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
             // Puis on redirige vers la page de visualisation de cettte annonce
