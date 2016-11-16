@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="advert")
  * @ORM\Entity(repositoryClass="OC\PlatformBundle\Repository\AdvertRepository")
  */
-class Advert
-{
+class Advert {
+
     /**
      * @var int
      *
@@ -49,14 +49,17 @@ class Advert
      */
     private $content;
 
+    /**
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published = true;
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -67,8 +70,7 @@ class Advert
      *
      * @return Advert
      */
-    public function setDate($date)
-    {
+    public function setDate($date) {
         $this->date = $date;
 
         return $this;
@@ -79,8 +81,7 @@ class Advert
      *
      * @return \DateTime
      */
-    public function getDate()
-    {
+    public function getDate() {
         return $this->date;
     }
 
@@ -91,8 +92,7 @@ class Advert
      *
      * @return Advert
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
 
         return $this;
@@ -103,8 +103,7 @@ class Advert
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -115,8 +114,7 @@ class Advert
      *
      * @return Advert
      */
-    public function setAuthor($author)
-    {
+    public function setAuthor($author) {
         $this->author = $author;
 
         return $this;
@@ -127,8 +125,7 @@ class Advert
      *
      * @return string
      */
-    public function getAuthor()
-    {
+    public function getAuthor() {
         return $this->author;
     }
 
@@ -139,8 +136,7 @@ class Advert
      *
      * @return Advert
      */
-    public function setContent($content)
-    {
+    public function setContent($content) {
         $this->content = $content;
 
         return $this;
@@ -151,9 +147,8 @@ class Advert
      *
      * @return string
      */
-    public function getContent()
-    {
+    public function getContent() {
         return $this->content;
     }
-}
 
+}

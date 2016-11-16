@@ -7,6 +7,7 @@ namespace OC\PlatformBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use OC\PlatformBundle\Entity\Advert;
 
 class AdvertController extends Controller {
 
@@ -25,32 +26,62 @@ class AdvertController extends Controller {
     }
 
     public function viewAction($id) {
-        // Ici, on récupérera l'annonce correspondante à l'id $id
+        // On récupère le repository
+       $repository = $this->getDoctrine()->getRepository('OC\PlatformBundle\Entity\Advert');
+       
+
+        // On récupère l'entité correspondante à l'id $id
+
+        $advert = $repository->find($id);
+
+
+        // $advert est donc une instance de OC\PlatformBundle\Entity\Advert
+        // ou null si l'id $id  n'existe pas, d'où ce if :
+
+        if (null === $advert) {
+
+            throw new NotFoundHttpException("L'annonce d'id " . $id . " n'existe pas.");
+        }
+
+
+        // Le render ne change pas, on passait avant un tableau, maintenant un objet
 
         return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
-                    'id' => $id
+                    'advert' => $advert
         ));
     }
 
     public function addAction(Request $request) {
+// Création de l'entité
+        $advert = new Advert();
+        $advert->setTitle('Recherche développeur Symfony2.');
+        $advert->setAuthor('Alexandre');
+        $advert->setContent("Nous recherchons un développeur Symfony2 débutant sur Lyon. Blabla…");
+// On peut ne pas définir ni la date ni la publication,
+// car ces attributs sont définis automatiquement dans le constructeur
+// On récupère l'EntityManager
+        $em = $this->getDoctrine()->getManager();
+// Étape 1 : On « persiste » l'entité
+        $em->persist($advert);
+// Étape 2 : On « flush » tout ce qui a été persisté avant
+        $em->flush();
 
-
-        // La gestion d'un formulaire est particulière, mais l'idée est la suivante :
         // Si la requête est en POST, c'est que le visiteur a soumis le formulaire
         if ($request->isMethod('POST')) {
             // Ici, on s'occupera de la création et de la gestion du formulaire
-$antispam = $this->container->get('oc_platform.antispam');
 
-    // Je pars du principe que $text contient le texte d'un message quelconque
-    $text = '...';
-    if ($antispam->isSpam($text)) {
-      throw new \Exception('Votre message a été détecté comme spam !');
-    }
-    
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
             // Puis on redirige vers la page de visualisation de cettte annonce
-            return $this->redirectToRoute('oc_platform_view', array('id' => 5));
+            return $this->redirect($this->generateUrl('oc_platform_view', array('id' => $advert->getId())));
+        }
+
+        // On récupère le service
+        $antispam = $this->container->get('oc_platform.antispam');
+
+        // Je pars du principe que $text contient le texte d'un message quelconque
+        if ($antispam->isSpam($advert->getContent())) {
+            throw new \Exception('Votre message a été détecté comme spam !');
         }
 
         // Si on n'est pas en POST, alors on affiche le formulaire
