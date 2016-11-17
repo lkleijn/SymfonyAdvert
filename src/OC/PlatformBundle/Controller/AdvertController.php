@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use OC\PlatformBundle\Entity\Advert;
+use OC\PlatformBundle\Entity\Image;
 
 class AdvertController extends Controller {
 
@@ -27,8 +28,8 @@ class AdvertController extends Controller {
 
     public function viewAction($id) {
         // On récupère le repository
-       $repository = $this->getDoctrine()->getRepository('OC\PlatformBundle\Entity\Advert');
-       
+        $repository = $this->getDoctrine()->getRepository('OC\PlatformBundle\Entity\Advert');
+
 
         // On récupère l'entité correspondante à l'id $id
 
@@ -57,9 +58,18 @@ class AdvertController extends Controller {
         $advert->setTitle('Recherche développeur Symfony2.');
         $advert->setAuthor('Alexandre');
         $advert->setContent("Nous recherchons un développeur Symfony2 débutant sur Lyon. Blabla…");
-// On peut ne pas définir ni la date ni la publication,
+        // On peut ne pas définir ni la date ni la publication,
 // car ces attributs sont définis automatiquement dans le constructeur
-// On récupère l'EntityManager
+        // Création de l'entité Image
+
+        $image = new Image();
+        $image->setUrl('http://sdz-upload.s3.amazonaws.com/prod/upload/job-de-reve.jpg');
+        $image->setAlt('Job de rêve');
+
+        // On lie l'image à l'annonce
+        $advert->setImage($image);
+        // On récupère l'EntityManager
+
         $em = $this->getDoctrine()->getManager();
 // Étape 1 : On « persiste » l'entité
         $em->persist($advert);
@@ -91,6 +101,27 @@ class AdvertController extends Controller {
     public function editAction($id, Request $request) {
         // Ici, on récupérera l'annonce correspondante à $id
         // Même mécanisme que pour l'ajout
+
+        $em = $this->getDoctrine()->getManager();
+
+
+        // On récupère l'annonce
+
+        $advert = $em->getRepository('OCPlatformBundle:Advert')->find($id);
+
+
+        // On modifie l'URL de l'image par exemple
+
+        $advert->getImage()->setUrl('test.png');
+
+
+        // On n'a pas besoin de persister l'annonce ni l'image.
+        // Rappelez-vous, ces entités sont automatiquement persistées car
+        // on les a récupérées depuis Doctrine lui-même
+        // On déclenche la modification
+
+        $em->flush();
+
         if ($request->isMethod('POST')) {
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien modifiée.');
 

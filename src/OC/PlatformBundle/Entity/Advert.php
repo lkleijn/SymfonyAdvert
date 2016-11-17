@@ -13,6 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
 class Advert {
 
     /**
+
+     * @ORM\OneToOne(targetEntity="OC\PlatformBundle\Entity\Image", cascade={"persist"})
+
+     */
+    private $image;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -53,6 +60,16 @@ class Advert {
      * @ORM\Column(name="published", type="boolean")
      */
     private $published = true;
+    
+    public function __construct()
+
+  {
+
+    // Par défaut, la date de l'annonce est la date d'aujourd'hui
+
+    $this->date = new \Datetime();
+
+  }
 
     /**
      * Get id
@@ -151,4 +168,52 @@ class Advert {
         return $this->content;
     }
 
+
+    /**
+     * Set published
+     *
+     * @param boolean $published
+     *
+     * @return Advert
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published
+     *
+     * @return boolean
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \OC\PlatformBundle\Entity\Image $image
+     *
+     * @return Advert
+     */
+    public function setImage(\OC\PlatformBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \OC\PlatformBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 }

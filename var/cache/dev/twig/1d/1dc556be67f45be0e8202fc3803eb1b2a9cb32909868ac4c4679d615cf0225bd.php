@@ -22,20 +22,20 @@ class __TwigTemplate_18022e56298ceceb047aeef3ea413285285598b1c93f2a7de535d538bd6
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_a857122c4bae124c8a5ea58ce273c1bda3e3f7abda7fdd8e5db4a72ca4365e60 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_a857122c4bae124c8a5ea58ce273c1bda3e3f7abda7fdd8e5db4a72ca4365e60->enter($__internal_a857122c4bae124c8a5ea58ce273c1bda3e3f7abda7fdd8e5db4a72ca4365e60_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "OCPlatformBundle:Advert:view.html.twig"));
+        $__internal_2c2f1d0ca7fc0886f48f05718c8d5288eceedbd539626de7f4cb9e9ec36df0bc = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_2c2f1d0ca7fc0886f48f05718c8d5288eceedbd539626de7f4cb9e9ec36df0bc->enter($__internal_2c2f1d0ca7fc0886f48f05718c8d5288eceedbd539626de7f4cb9e9ec36df0bc_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "OCPlatformBundle:Advert:view.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_a857122c4bae124c8a5ea58ce273c1bda3e3f7abda7fdd8e5db4a72ca4365e60->leave($__internal_a857122c4bae124c8a5ea58ce273c1bda3e3f7abda7fdd8e5db4a72ca4365e60_prof);
+        $__internal_2c2f1d0ca7fc0886f48f05718c8d5288eceedbd539626de7f4cb9e9ec36df0bc->leave($__internal_2c2f1d0ca7fc0886f48f05718c8d5288eceedbd539626de7f4cb9e9ec36df0bc_prof);
 
     }
 
     // line 5
     public function block_title($context, array $blocks = array())
     {
-        $__internal_ac584013f13078afef1e2a9ab337f2a9175b924c14556f4b067f3d04f8988268 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_ac584013f13078afef1e2a9ab337f2a9175b924c14556f4b067f3d04f8988268->enter($__internal_ac584013f13078afef1e2a9ab337f2a9175b924c14556f4b067f3d04f8988268_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "OCPlatformBundle:Advert:view.html.twig"));
+        $__internal_4beb49a517fdf5f5dbcb8b9d57d12a0fe8ac1bf33da069740711790f4b4fb982 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_4beb49a517fdf5f5dbcb8b9d57d12a0fe8ac1bf33da069740711790f4b4fb982->enter($__internal_4beb49a517fdf5f5dbcb8b9d57d12a0fe8ac1bf33da069740711790f4b4fb982_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "OCPlatformBundle:Advert:view.html.twig"));
 
         // line 6
         echo "  Lecture d'une annonce - ";
@@ -43,15 +43,15 @@ class __TwigTemplate_18022e56298ceceb047aeef3ea413285285598b1c93f2a7de535d538bd6
         echo "
 ";
         
-        $__internal_ac584013f13078afef1e2a9ab337f2a9175b924c14556f4b067f3d04f8988268->leave($__internal_ac584013f13078afef1e2a9ab337f2a9175b924c14556f4b067f3d04f8988268_prof);
+        $__internal_4beb49a517fdf5f5dbcb8b9d57d12a0fe8ac1bf33da069740711790f4b4fb982->leave($__internal_4beb49a517fdf5f5dbcb8b9d57d12a0fe8ac1bf33da069740711790f4b4fb982_prof);
 
     }
 
     // line 9
     public function block_ocplatform_body($context, array $blocks = array())
     {
-        $__internal_e586aa252c42931e03c46828ff642ab547e768c7554de98c1f4fcdfc5b873342 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_e586aa252c42931e03c46828ff642ab547e768c7554de98c1f4fcdfc5b873342->enter($__internal_e586aa252c42931e03c46828ff642ab547e768c7554de98c1f4fcdfc5b873342_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "OCPlatformBundle:Advert:view.html.twig"));
+        $__internal_b0cb9b82becefe12d81df5c102ed9a60b6fc8d163a2a33556aafb041fcda26d1 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_b0cb9b82becefe12d81df5c102ed9a60b6fc8d163a2a33556aafb041fcda26d1->enter($__internal_b0cb9b82becefe12d81df5c102ed9a60b6fc8d163a2a33556aafb041fcda26d1_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "OCPlatformBundle:Advert:view.html.twig"));
 
         // line 10
         echo "
@@ -65,31 +65,44 @@ class __TwigTemplate_18022e56298ceceb047aeef3ea413285285598b1c93f2a7de535d538bd6
         echo ", le ";
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "date", array()), "d/m/Y"), "html", null, true);
         echo "</i>
-
+  
+  ";
+        // line 15
+        if ( !(null === $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "image", array()))) {
+            // line 16
+            echo "  <img src=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "image", array()), "url", array()), "html", null, true);
+            echo "\" alt=\"";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "image", array()), "alt", array()), "html", null, true);
+            echo "\">
+";
+        }
+        // line 18
+        echo "
   <div class=\"well\">
     ";
-        // line 15
+        // line 20
         echo twig_escape_filter($this->env, $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "content", array()), "html", null, true);
         echo "
   </div>
 
   <p>
     <a href=\"";
-        // line 19
+        // line 24
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("oc_platform_home");
         echo "\" class=\"btn btn-default\">
       <i class=\"glyphicon glyphicon-chevron-left\"></i>
       Retour à la liste
     </a>
     <a href=\"";
-        // line 23
+        // line 28
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("oc_platform_edit", array("id" => $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-default\">
       <i class=\"glyphicon glyphicon-edit\"></i>
       Modifier l'annonce
     </a>
     <a href=\"";
-        // line 27
+        // line 32
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("oc_platform_delete", array("id" => $this->getAttribute((isset($context["advert"]) ? $context["advert"] : $this->getContext($context, "advert")), "id", array()))), "html", null, true);
         echo "\" class=\"btn btn-danger\">
       <i class=\"glyphicon glyphicon-trash\"></i>
@@ -99,7 +112,7 @@ class __TwigTemplate_18022e56298ceceb047aeef3ea413285285598b1c93f2a7de535d538bd6
 
 ";
         
-        $__internal_e586aa252c42931e03c46828ff642ab547e768c7554de98c1f4fcdfc5b873342->leave($__internal_e586aa252c42931e03c46828ff642ab547e768c7554de98c1f4fcdfc5b873342_prof);
+        $__internal_b0cb9b82becefe12d81df5c102ed9a60b6fc8d163a2a33556aafb041fcda26d1->leave($__internal_b0cb9b82becefe12d81df5c102ed9a60b6fc8d163a2a33556aafb041fcda26d1_prof);
 
     }
 
@@ -115,7 +128,7 @@ class __TwigTemplate_18022e56298ceceb047aeef3ea413285285598b1c93f2a7de535d538bd6
 
     public function getDebugInfo()
     {
-        return array (  93 => 27,  86 => 23,  79 => 19,  72 => 15,  64 => 12,  60 => 11,  57 => 10,  51 => 9,  41 => 6,  35 => 5,  11 => 3,);
+        return array (  106 => 32,  99 => 28,  92 => 24,  85 => 20,  81 => 18,  73 => 16,  71 => 15,  64 => 12,  60 => 11,  57 => 10,  51 => 9,  41 => 6,  35 => 5,  11 => 3,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -140,6 +153,11 @@ class __TwigTemplate_18022e56298ceceb047aeef3ea413285285598b1c93f2a7de535d538bd6
 
   <h2>{{ advert.title }}</h2>
   <i>Par {{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>
+  
+  {# On vérifie qu'une image soit bien associée à l'annonce #}
+{% if advert.image is not null %}
+  <img src=\"{{ advert.image.url }}\" alt=\"{{ advert.image.alt }}\">
+{% endif %}
 
   <div class=\"well\">
     {{ advert.content }}
