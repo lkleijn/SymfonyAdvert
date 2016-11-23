@@ -44,11 +44,18 @@ class AdvertController extends Controller {
             throw new NotFoundHttpException("L'annonce d'id " . $id . " n'existe pas.");
         }
 
+// On récupère la liste des candidatures de cette annonce
 
-        // Le render ne change pas, on passait avant un tableau, maintenant un objet
+        $listApplications = $em
+                ->getRepository('OCPlatformBundle:Application')
+                ->findBy(array('advert' => $advert))
+
+        ;
+
 
         return $this->render('OCPlatformBundle:Advert:view.html.twig', array(
-                    'advert' => $advert
+                    'advert' => $advert,
+                    'listApplications' => $listApplications
         ));
     }
 
@@ -61,6 +68,22 @@ class AdvertController extends Controller {
         // On peut ne pas définir ni la date ni la publication,
 // car ces attributs sont définis automatiquement dans le constructeur
         // Création de l'entité Image
+        // Création d'une première candidature
+
+        $application1 = new Application();
+        $application1->setAuthor('Marine');
+        $application1->setContent("J'ai toutes les qualités requises.");
+
+        // Création d'une deuxième candidature par exemple
+
+        $application2 = new Application();
+        $application2->setAuthor('Pierre');
+        $application2->setContent("Je suis très motivé.");
+
+        // On lie les candidatures à l'annonce
+
+        $application1->setAdvert($advert);
+        $application2->setAdvert($advert);
 
         $image = new Image();
         $image->setUrl('http://sdz-upload.s3.amazonaws.com/prod/upload/job-de-reve.jpg');
@@ -73,6 +96,8 @@ class AdvertController extends Controller {
         $em = $this->getDoctrine()->getManager();
 // Étape 1 : On « persiste » l'entité
         $em->persist($advert);
+        $em->persist($application1);
+        $em->persist($application2);
 // Étape 2 : On « flush » tout ce qui a été persisté avant
         $em->flush();
 
@@ -109,16 +134,30 @@ class AdvertController extends Controller {
 
         $advert = $em->getRepository('OCPlatformBundle:Advert')->find($id);
 
+        if (null === $advert) {
 
-        // On modifie l'URL de l'image par exemple
+            throw new NotFoundHttpException("L'annonce d'id " . $id . " n'existe pas.");
+        }
 
-        $advert->getImage()->setUrl('test.png');
+        // La méthode findAll retourne toutes les catégories de la base de données
+
+        $listCategories = $em->getRepository('OCPlatformBundle:Category')->findAll();
+
+
+        // On boucle sur les catégories pour les lier à l'annonce
+
+        foreach ($listCategories as $category) {
+
+            $advert->addCategory($category);
+        }
 
 
         // On n'a pas besoin de persister l'annonce ni l'image.
         // Rappelez-vous, ces entités sont automatiquement persistées car
         // on les a récupérées depuis Doctrine lui-même
         // On déclenche la modification
+
+
 
         $em->flush();
 
